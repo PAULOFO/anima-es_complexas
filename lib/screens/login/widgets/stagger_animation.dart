@@ -4,33 +4,57 @@ class StaggerAnimation extends StatelessWidget {
 
   final AnimationController controller;
 
-  StaggerAnimation({this.controller});
+  StaggerAnimation({this.controller}) :
+    buttonSqueeze = Tween(
+      begin: 320.0,//Largura inicial do botão
+      end: 60.0    //Largura final do botão
+    ).animate(
+      CurvedAnimation(
+        parent: controller, ///155 de 2 segundos 0.150
+        curve: Interval(0.0, 0.150)//Intervalo que acontece a curva porcentagem da animação
+      )
+    );
+
+  final Animation<double> buttonSqueeze;//double porque vai animar a largura do botão
 
   Widget _buildAnimation(BuildContext context, Widget child){
     return Padding(
       padding: EdgeInsets.only(bottom: 50),
       child: InkWell(
-        onTap: (){},
+        onTap: (){
+          controller.forward();///Inicia a animação
+        },
         child: Container(
-          width: 320,
+          width: buttonSqueeze.value,
           height: 60,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: Color.fromRGBO(247, 64, 106, 1.0),
             borderRadius: BorderRadius.all(Radius.circular(30.0))
           ),
-          child: Text(
-              'Sign in',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w300,
-              letterSpacing: 0.3,
-            ),
-          ),
+          child: _buildInside(context)
         ),
       ),
     );
+  }
+
+  Widget _buildInside(BuildContext context) {
+    if(buttonSqueeze.value > 75) { //Qdo a largura do botão for maior que 75 ao encolher
+      return Text(
+        'Sign in',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.w300,
+          letterSpacing: 0.3,
+        ),
+      );
+    } else {
+      return CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+        strokeWidth: 1.0,
+      );
+    }
   }
 
   @override
