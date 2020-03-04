@@ -24,6 +24,7 @@ class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin {
 
   AnimationController controller;
   Animation<double> animation;
+  Animation<double> animation2;
 
   @override
   void initState() {
@@ -47,6 +48,15 @@ class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin {
       }
     });
 
+    animation2 = Tween<double>(begin: 0, end: 150).animate(controller);//Tween faz o mapeamento
+    animation2.addStatusListener((status){
+      if(status == AnimationStatus.completed){
+        controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        controller.forward();
+      }
+    });
+
     controller.forward();///forward Anima para frente //reverse anima para trás
   }
 
@@ -59,11 +69,22 @@ class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedLogo(animation);
+    return Column(
+      children: <Widget>[
+        GrowTransition(
+          child: LogoWidget(),
+          animation: animation,
+        ),
+        GrowTransition(
+          child: LogoWidget(),
+          animation: animation2,
+        ),
+      ],
+    );
   }
 }
 
-class AnimatedLogo extends AnimatedWidget {
+/*class AnimatedLogo extends AnimatedWidget {
 
   AnimatedLogo(Animation<double> animation) : super (listenable: animation);
 
@@ -79,6 +100,43 @@ class AnimatedLogo extends AnimatedWidget {
       ),
     );
   }
+}*/
+
+class LogoWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FlutterLogo(),
+    );
+  }
 }
+
+///Transição de Crescimento
+class GrowTransition extends StatelessWidget {
+
+  final Widget child;//Por ser Stateless tem que ser final
+  final Animation<double> animation;
+
+  GrowTransition({this.child, this.animation});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: AnimatedBuilder(//Pega a animação toda vez que o valor da animação mudar refaz o Widget
+        animation: animation,
+        builder: (context, child) {
+          return Container(
+            height: animation.value,
+            width: animation.value,
+            //width: 500,
+            child: child,
+          );
+        },
+        child: child,
+      ),
+    );
+  }
+}
+
 
 ///SingleTickerProviderStateMixin ->Informa todas as vezes que a tela for renderizada
