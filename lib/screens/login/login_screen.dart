@@ -1,3 +1,5 @@
+import 'package:animacoes_complexas_flare/screens/login/widgets/form_container.dart';
+import 'package:animacoes_complexas_flare/screens/login/widgets/sign_up_button.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -33,9 +35,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    FormContainer(
-
-                    ),
+                    FormContainer(),
+                    SignUpButton(),
                   ],
                 ),
               ],
