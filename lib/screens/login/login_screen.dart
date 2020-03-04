@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
-    timeDilation = 4;///Faz com que fique 4x mais lento
+    timeDilation = 8;///Faz com que fique 4x mais lento
 
     return Scaffold(
       body: Container(
