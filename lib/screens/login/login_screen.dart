@@ -1,3 +1,4 @@
+import 'package:animacoes_complexas_flare/screens/home/home_screen.dart';
 import 'package:animacoes_complexas_flare/screens/login/widgets/form_container.dart';
 import 'package:animacoes_complexas_flare/screens/login/widgets/sign_up_button.dart';
 import 'package:animacoes_complexas_flare/screens/login/widgets/stagger_animation.dart';
@@ -22,6 +23,13 @@ class _LoginScreenState extends State<LoginScreen>
       vsync: this,
       duration: Duration(seconds: 2),
     );
+    _animationController.addStatusListener((status){
+      if(status == AnimationStatus.completed){
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context)=>HomeScreen())
+        );
+      }
+    });
   }
 
 
@@ -33,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
-    timeDilation = 8;///Faz com que fique 4x mais lento
+    timeDilation = 1;///Faz com que fique 4x mais lento
 
     return Scaffold(
       body: Container(

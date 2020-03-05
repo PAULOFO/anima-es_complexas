@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
     _controller = AnimationController(
         vsync: this,
-        duration: Duration(milliseconds: 2000)
+        duration: Duration(milliseconds: 1000)
     );
     _controller.forward();
   }

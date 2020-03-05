@@ -1,4 +1,4 @@
-import 'package:animacoes_complexas_flare/screens/home/home_screen.dart';
+import 'package:animacoes_complexas_flare/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Animations',
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: LoginScreen(),
       //home: LoginScreen(),
     );
   }
