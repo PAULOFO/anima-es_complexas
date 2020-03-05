@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         vsync: this,
         duration: Duration(milliseconds: 2000)
     );
+    _controller.forward();
   }
 
   @override
