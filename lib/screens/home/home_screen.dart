@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    timeDilation = 8;///Faz com que fique 4x mais lento
+    timeDilation = 1;///Faz com que fique 4x mais lento
     return StaggerAnimation(
       controller: _controller.view,
     );
