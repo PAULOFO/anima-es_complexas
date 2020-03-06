@@ -13,7 +13,7 @@ class HomeTop extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
 
     return Container(
-      height: screenSize.height * 0.3,///Ocupa 30% de qualquer tela
+      height: screenSize.height * 0.4,///Ocupa 30% de qualquer tela
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage('images/background.jpg'),
